@@ -25,8 +25,7 @@ class Parser():
 
     def getSoup(self, path):
         page = self.getContent(path)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        return soup
+        return BeautifulSoup(page.content, 'html.parser')
 
     def yieldLinks(self, soup):
         for div in soup.find_all('ul', class_='ulPopover'):
@@ -34,8 +33,7 @@ class Parser():
                 yield SITE + child['href']
 
     def getAllParentPaths(self):
-        soup = self.getSoup(CODES)
-        return self.yieldLinks(soup)
+        return self.yieldLinks(self.getSoup(CODES))
 
     def getAllParentContents(self):
         results = grequests.imap(
@@ -45,8 +43,7 @@ class Parser():
         return results
 
     def getAllChildrenSites(self, content):
-        soup = BeautifulSoup(content, 'html.parser')
-        return self.yieldLinks(soup)
+        return self.yieldLinks(BeautifulSoup(content, 'html.parser'))
 
     def getAllChildrenResponses(self, content):
         # todo: speed up via multithreading?
@@ -78,7 +75,7 @@ class Parser():
     def scrape(self):
         for parentResponse in self.getAllParentContents():
             responses = self.getAllChildrenResponses(parentResponse.content)
-            # todo: make this multiprocessing?
+            # todo: speed up with multiprocessing?
             for response in responses:
                 self.parseChildResponse(response)
 
