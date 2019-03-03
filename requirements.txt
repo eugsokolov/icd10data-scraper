@@ -1,0 +1,6 @@
+grequests
+requests
+BeautifulSoup4
+Flask
+Flask-MongoAlchemy
+Flask-mongoengine
