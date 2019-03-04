@@ -27,7 +27,7 @@ Given a list of codes in codes.txt:
  $ for i in `cat codes.txt`; do curl http://localhost:8080/code/$i ; done
 ```
 
-(WIP) Load codes into a database - optional, but will prepopulate all codes:
+Load codes into a database - optional, but will prepopulate all codes (the speed here can be improved):
 ```
- $ curl -X POST http://localhost:8080/load
+ $ python3 scraper.py
  ```

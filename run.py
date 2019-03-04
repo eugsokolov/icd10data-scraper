@@ -1,12 +1,12 @@
 from main import app
-from icdscraper import loadCodes, get
+from scraper import load, get
 
 @app.route('/load', methods=['POST'])
 def setter():
-    final = loadCodes()
+    final = load()
     if not final:
         abort(404)
-    return 'successfully loaded {} codes\n'.format(len(final))
+    return final
 
 @app.route('/code/<code>')
 def getter(code):
