@@ -8,13 +8,13 @@ This web app scrapes icd10data and lazily stores codes and appropriate synonyms 
 
 You must run:
 ```
- $ pip install -r requirements.txt
+ $ pip3 install -r requirements.txt
 ```
 
 Usage:
 Run the app:
 ```
- $ python run.py
+ $ python3 run.py
 ```
 
 Get a code's synonyms:
